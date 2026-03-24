@@ -394,7 +394,6 @@
     position: relative;
     width: 298px;
     height: 430px;
-    border-radius: 12px;
     overflow: hidden;
     box-shadow:
       0 0 0 1px rgba(255,255,255,0.06),
@@ -415,8 +414,8 @@
     position: absolute;
     top: 72px;
     left: 97px;
-    width: 172px;
-    height: 173px;
+    width: 171px;
+    height: 172px;
     overflow: hidden;
     z-index: 2;
     background: #ffffff;
@@ -426,8 +425,11 @@
   .photo-overlay img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;    /* shows full photo, no crop */
     display: block;
+    padding: 12px;           /* whitespace border around photo — increase to add more gap */
+    background: #ffffff;
+    box-sizing: border-box;
   }
 
   /* ── NAME TEXT ── */
@@ -582,7 +584,7 @@
       <div class="card-name"     id="cardName">JUAN DELA CRUZ</div>
       <div class="card-position" id="cardPosition">POSITION</div>
       <div class="card-office"   id="cardOffice">OFFICE</div>
-      <div class="card-id"       id="cardID">0001</div>
+      <div class="card-id"       id="cardID">26-001</div>
     </div>
   </div>
 
@@ -592,7 +594,7 @@
   let pendingDataURL   = null;
   let confirmedDataURL = null;
 
-  function pad(n) { return String(n).padStart(4, '0'); }
+  function pad(n) { return '26-' + String(n).padStart(3, '0'); }
 
   function setStatus(text, color) {
     document.getElementById('statusText').textContent = text;
